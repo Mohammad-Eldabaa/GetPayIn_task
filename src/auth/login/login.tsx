@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import { store } from "../../redux/store";
 import { isTokenExpire } from "../../redux/APIClien";
 import { styles } from "./style";
+import BiometricUnlockModal from "../bio_integration/BiometricUnlockModal";
 
 export const LoginPage = ({ navigation }: any) => {
   const dispatch = useDispatch();
@@ -49,7 +50,7 @@ export const LoginPage = ({ navigation }: any) => {
             isSubmitting,
           }) => (
             <View>
-              <Text style={styles.title}>Login</Text>
+              {/* <Text style={styles.title}>Login</Text>
 
               {Object.keys(LoginInitialValues).map((value, index) => (
                 <Input
@@ -69,14 +70,16 @@ export const LoginPage = ({ navigation }: any) => {
                 isSubmitting={isSubmitting}
                 handleSubmit={handleSubmit}
                 val={"login"}
-              />
+              /> */}
 
-              <SubmitButton
-                val={"Register"}
+              <BiometricUnlockModal visible={true} onSuccess={() => {}} />
+
+              {/* <SubmitButton
+                val={"Biometric unlock"}
                 handleSubmit={() => {
                   navigation.navigate("Register");
                 }}
-              />
+              /> */}
             </View>
           )}
         </Formik>

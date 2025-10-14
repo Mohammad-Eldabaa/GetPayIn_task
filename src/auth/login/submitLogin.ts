@@ -20,9 +20,7 @@ export async function submitLogin({
   navigation,
 }: submitLoginProps) {
   try {
-    console.log("Submitting login with values:", values);
     setSubmitting(true);
-
     const response = await APIClient.post("/auth/login", {
       username: values.username,
       password: values.password,
@@ -30,16 +28,12 @@ export async function submitLogin({
     });
 
     console.log("Login response:", response.data);
-
-    if (response.data?.accessToken) {
+    if (response.data?.accessToken)
       dispatch(setToken(response.data.accessToken));
-    }
-
     navigation.navigate("Home");
     resetForm();
   } catch (error) {
     console.error("Login error:", error.response?.data || error.message);
-
     const errorMessage =
       error.response?.data?.message || error.message || "Something went wrong!";
     showAlert("Login Error", errorMessage);

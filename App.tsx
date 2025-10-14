@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import { Provider } from "react-redux";
 import { persistor, store } from "./src/redux/store";
 import { PersistGate } from "redux-persist/integration/react";
@@ -12,7 +11,6 @@ export default function App() {
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
             <AppNavigation />
-            <StatusBar style="auto" />
           </PersistGate>
         </Provider>
       </SafeAreaView>

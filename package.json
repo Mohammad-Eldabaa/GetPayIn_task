@@ -4,8 +4,8 @@
   "main": "index.ts",
   "scripts": {
     "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
     "web": "expo start --web"
   },
   "dependencies": {
@@ -14,6 +14,7 @@
     "@reduxjs/toolkit": "^2.9.0",
     "axios": "^1.12.2",
     "expo": "~54.0.13",
+    "expo-local-authentication": "~17.0.7",
     "expo-status-bar": "~3.0.8",
     "formik": "^2.4.6",
     "jwt-decode": "^4.0.0",
