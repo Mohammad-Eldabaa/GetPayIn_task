@@ -1,0 +1,53 @@
+import { Alert } from "react-native";
+import { APIClient } from "../../redux/APIClien";
+import { setToken } from "../../redux/slice";
+import { FormikState } from "formik";
+import { Dispatch, UnknownAction } from "@reduxjs/toolkit";
+
+interface submitLoginProps {
+  values: Record<string, string>;
+  setSubmitting: (isSubmitting: boolean) => void;
+  resetForm: (nextState?: Partial<FormikState<Record<string, string>>>) => void;
+  dispatch: Dispatch<UnknownAction>;
+  navigation: any;
+}
+
+export async function submitLogin({
+  values,
+  dispatch,
+  setSubmitting,
+  resetForm,
+  navigation,
+}: submitLoginProps) {
+  try {
+    console.log("Submitting login with values:", values);
+    setSubmitting(true);
+
+    const response = await APIClient.post("/auth/login", {
+      username: values.username,
+      password: values.password,
+      expiresInMins: 3,
+    });
+
+    console.log("Login response:", response.data);
+
+    if (response.data?.accessToken) {
+      dispatch(setToken(response.data.accessToken));
+    }
+
+    navigation.navigate("Home");
+    resetForm();
+  } catch (error) {
+    console.error("Login error:", error.response?.data || error.message);
+
+    const errorMessage =
+      error.response?.data?.message || error.message || "Something went wrong!";
+    showAlert("Login Error", errorMessage);
+  } finally {
+    setSubmitting(false);
+  }
+}
+
+const showAlert = (title: string, message: string) => {
+  Alert.alert(title, message);
+};
