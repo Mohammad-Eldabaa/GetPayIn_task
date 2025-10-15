@@ -6,15 +6,17 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from "react-native";
-
 import { handleBiometricAuth } from "./handleBiometricAuth";
+import { ModalStyles } from "./modalStyle";
 
 export default function BiometricUnlockModal({
   visible,
   onSuccess,
+  setVisible,
 }: {
   visible: boolean;
-  onSuccess: () => {};
+  onSuccess: () => void;
+  setVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
@@ -26,48 +28,29 @@ export default function BiometricUnlockModal({
   return (
     <View>
       <Modal visible={visible} transparent animationType="slide">
-        <View
-          style={{
-            flex: 1,
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "rgba(0,0,0,0.6)",
-          }}
-        >
-          <View
-            style={{
-              backgroundColor: "#fff",
-              padding: 25,
-              borderRadius: 16,
-              width: "80%",
-              alignItems: "center",
-            }}
-          >
-            <Text style={{ fontSize: 18, fontWeight: "600" }}>
-              Biometric Authentication
-            </Text>
+        <View style={ModalStyles.overlay}>
+          <View style={ModalStyles.modalContainer}>
+            <Text style={ModalStyles.title}>Biometric Authentication</Text>
 
             {loading ? (
-              <ActivityIndicator size="large" style={{ marginVertical: 20 }} />
+              <ActivityIndicator
+                size="large"
+                style={ModalStyles.loadingIndicator}
+              />
             ) : (
               <>
-                <Text style={{ marginVertical: 10, color: "gray" }}>
+                <Text style={ModalStyles.description}>
                   Use your fingerprint or face to unlock
                 </Text>
-                {error ? <Text style={{ color: "red" }}>{error}</Text> : null}
+                {error ? (
+                  <Text style={ModalStyles.errorText}>{error}</Text>
+                ) : null}
+
                 <TouchableOpacity
-                  style={{
-                    marginTop: 15,
-                    backgroundColor: "#007bff",
-                    paddingHorizontal: 20,
-                    paddingVertical: 10,
-                    borderRadius: 8,
-                  }}
-                  onPress={() =>
-                    handleBiometricAuth({ setLoading, setError, onSuccess })
-                  }
+                  style={ModalStyles.tryAgainButton}
+                  onPress={() => setVisible(false)}
                 >
-                  <Text style={{ color: "#fff" }}>Try Again</Text>
+                  <Text style={ModalStyles.tryAgainText}>Close</Text>
                 </TouchableOpacity>
               </>
             )}
