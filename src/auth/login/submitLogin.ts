@@ -1,6 +1,6 @@
 import { Alert } from "react-native";
 import { APIClient } from "../../redux/APIClien";
-import { setToken } from "../../redux/slice";
+import { setToken, setUser } from "../../redux/slice";
 import { FormikState } from "formik";
 import { Dispatch, UnknownAction } from "@reduxjs/toolkit";
 
@@ -28,8 +28,13 @@ export async function submitLogin({
     });
 
     console.log("Login response:", response.data);
-    if (response.data?.accessToken)
-      dispatch(setToken(response.data.accessToken));
+    const res = response.data;
+    const { id, username, firstName, lastName, email, image } = res;
+    if (response.data?.accessToken) {
+      dispatch(setToken(res.accessToken));
+      dispatch(setUser({ id, username, firstName, lastName, email, image }));
+    }
+
     navigation.navigate("Home");
     resetForm();
   } catch (error) {

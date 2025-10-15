@@ -6,8 +6,8 @@ import { LoginInitialValues, loginSchema } from "./loginSchema";
 import SubmitButton from "../../component/submitButton";
 import { submitLogin } from "./submitLogin";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { useDispatch } from "react-redux";
-import { store } from "../../redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState, store } from "../../redux/store";
 import { isTokenExpire } from "../../redux/APIClien";
 import { styles } from "./style";
 import BiometricUnlockModal from "../bio_integration/BiometricUnlockModal";
@@ -15,6 +15,7 @@ import BiometricUnlockModal from "../bio_integration/BiometricUnlockModal";
 export const LoginPage = ({ navigation }: any) => {
   const [visible, setVisible] = useState<boolean>(false);
   const dispatch = useDispatch();
+  const user = useSelector((store: RootState) => store.auth.user);
 
   useEffect(() => {
     const token = store.getState().auth.token;
@@ -56,7 +57,6 @@ export const LoginPage = ({ navigation }: any) => {
               }) => (
                 <View>
                   <Text style={styles.title}>Login</Text>
-
                   {Object.keys(LoginInitialValues).map((value, index) => (
                     <Input
                       key={index}
@@ -72,17 +72,17 @@ export const LoginPage = ({ navigation }: any) => {
                       }
                     />
                   ))}
-
                   <SubmitButton
                     isSubmitting={isSubmitting}
                     handleSubmit={handleSubmit}
                     val={"login"}
                   />
-
-                  <SubmitButton
-                    val={"Biometric unlock"}
-                    handleSubmit={() => setVisible(true)}
-                  />
+                  {user && (
+                    <SubmitButton
+                      val={"Biometric unlock"}
+                      handleSubmit={() => setVisible(true)}
+                    />
+                  )}
                 </View>
               )}
             </Formik>

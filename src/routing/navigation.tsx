@@ -2,6 +2,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { LoginPage } from "../auth/login/login";
 import Home from "../home/Home";
+import BottomTabs from "./bottomTabs/bottomTabs";
 
 export type RootStackParamList = {
   Login: undefined;
@@ -19,7 +20,7 @@ export default function AppNavigation() {
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="Login" component={LoginPage} />
-        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Home" component={BottomTabs} />
       </Stack.Navigator>
     </NavigationContainer>
   );
