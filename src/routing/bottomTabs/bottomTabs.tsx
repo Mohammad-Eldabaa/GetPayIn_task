@@ -1,7 +1,8 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
-import { TabsSytle } from "./TabsStyle";
 import tabs from "./Tabs";
+import { TabsSytle } from "../../styles/TabsStyle";
+import { useEffect } from "react";
 
 export type BottomTabsParamList = {
   Categories: undefined;

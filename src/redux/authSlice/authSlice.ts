@@ -1,28 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-interface userState {
-  id?: number;
-  username?: string;
-  firstName?: string;
-  lastName?: string;
-  email?: string;
-  image?: string;
-}
-interface AuthState {
-  token: string | null;
-  user: userState | null;
-  loading: boolean;
-}
-
-const initialState: AuthState = {
-  token: null,
-  user: null,
-  loading: false,
-};
+import { initialState, userState } from "./interfaces";
 
 const authSlice = createSlice({
   name: "auth",
-  initialState,
+  initialState: initialState,
   reducers: {
     setToken: (state, action: PayloadAction<string>) => {
       state.token = action.payload;

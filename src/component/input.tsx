@@ -7,7 +7,7 @@ import {
   KeyboardTypeOptions,
 } from "react-native";
 import { FormikErrors, FormikHandlers, FormikTouched } from "formik";
-import { styles } from "../auth/login/style";
+import { styles } from "../styles/LoginStyles";
 
 interface FormValues {
   username: string;

@@ -7,7 +7,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { handleBiometricAuth } from "./handleBiometricAuth";
-import { ModalStyles } from "./modalStyle";
+import { ModalStyles } from "../../styles/ModalBiometricStyle";
 
 export default function BiometricUnlockModal({
   visible,

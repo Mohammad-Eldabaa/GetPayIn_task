@@ -1,7 +1,8 @@
 import axios, { InternalAxiosRequestConfig } from "axios";
 import { jwtDecode } from "jwt-decode";
 import { store } from "./store";
-import { clearToken } from "./slice";
+import { clearToken } from "./authSlice/authSlice";
+import { navigationRef } from "../routing/stack/navigation";
 
 interface DecodedToken {
   exp?: number;
@@ -29,15 +30,15 @@ APIClient.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
     if (config.url && !publicRoutes.includes(config.url)) {
       const token = store.getState().auth.token as string | null;
-
       if (!token || isTokenExpire(token)) {
         store.dispatch(clearToken());
+        if (navigationRef.isReady()) {
+          navigationRef.navigate("Login");
+        }
         return config;
       }
-
       config.headers.set("Authorization", `Bearer ${token}`);
     }
-
     return config;
   },
   (error) => Promise.reject(error)

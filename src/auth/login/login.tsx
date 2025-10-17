@@ -9,16 +9,15 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, store } from "../../redux/store";
 import { isTokenExpire } from "../../redux/APIClien";
-import { styles } from "./style";
+import { styles } from "../../styles/LoginStyles";
 import BiometricUnlockModal from "../bio_integration/BiometricUnlockModal";
 
 export const LoginPage = ({ navigation }: any) => {
   const [visible, setVisible] = useState<boolean>(false);
   const dispatch = useDispatch();
-  const user = useSelector((store: RootState) => store.auth.user);
+  const token = useSelector((store: RootState) => store.auth.token);
 
   useEffect(() => {
-    const token = store.getState().auth.token;
     if (!isTokenExpire(token)) {
       navigation.navigate("Home");
     }
@@ -77,7 +76,7 @@ export const LoginPage = ({ navigation }: any) => {
                     handleSubmit={handleSubmit}
                     val={"login"}
                   />
-                  {user && (
+                  {!!token && !isTokenExpire(token) && (
                     <SubmitButton
                       val={"Biometric unlock"}
                       handleSubmit={() => setVisible(true)}

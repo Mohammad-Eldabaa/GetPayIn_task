@@ -1,6 +1,6 @@
 import React from "react";
 import { TouchableOpacity, View, Text } from "react-native";
-import { styles } from "../auth/login/style";
+import { styles } from "../styles/LoginStyles";
 
 interface SubmitButtonProps {
   val: string;

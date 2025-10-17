@@ -1,6 +1,6 @@
 import { Alert } from "react-native";
 import { APIClient } from "../../redux/APIClien";
-import { setToken, setUser } from "../../redux/slice";
+import { setToken, setUser } from "../../redux/authSlice/authSlice";
 import { FormikState } from "formik";
 import { Dispatch, UnknownAction } from "@reduxjs/toolkit";
 
@@ -24,7 +24,7 @@ export async function submitLogin({
     const response = await APIClient.post("/auth/login", {
       username: values.username,
       password: values.password,
-      expiresInMins: 3,
+      expiresInMins: 1,
     });
 
     console.log("Login response:", response.data);
@@ -38,7 +38,7 @@ export async function submitLogin({
     navigation.navigate("Home");
     resetForm();
   } catch (error) {
-    console.error("Login error:", error.response?.data || error.message);
+    // console.error("Login error:", error.response?.data || error.message);
     const errorMessage =
       error.response?.data?.message || error.message || "Something went wrong!";
     showAlert("Login Error", errorMessage);

@@ -1,16 +1,18 @@
+import Categories from "../../home/categories/categories";
 import Home from "../../home/Home";
+import ProductsPage from "../../home/products/productsPage";
 
 const tabs = [
   {
     name: "Categories",
     title: "categories",
-    component: Home,
+    component: Categories,
     icon: "grid-outline",
   },
   {
     name: "AllProduct",
     title: "products",
-    component: Home,
+    component: ProductsPage,
     icon: "cube-outline",
   },
   {

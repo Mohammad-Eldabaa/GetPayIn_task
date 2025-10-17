@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import authReducer from "./slice";
+import authReducer from "./authSlice/authSlice";
+import productReducer from "./productsSlice/productSlice";
 import {
   persistStore,
   persistReducer,
@@ -36,11 +37,22 @@ const persistConfig: PersistConfig<ReturnType<typeof authReducer>> = {
   storage: AsyncStorage,
 };
 
+const productspersistConfig: PersistConfig<ReturnType<typeof productReducer>> =
+  {
+    key: "products",
+    storage: AsyncStorage,
+  };
+
 const persistedAuthReducer = persistReducer(persistConfig, authReducer);
+const persistedProcutsReducer = persistReducer(
+  productspersistConfig,
+  productReducer
+);
 
 export const store = configureStore({
   reducer: {
     auth: persistedAuthReducer,
+    products: persistedProcutsReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
