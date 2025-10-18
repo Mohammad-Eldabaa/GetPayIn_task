@@ -15,8 +15,16 @@ const productSlice = createSlice({
     setCategories: (state, action: PayloadAction<categoriesTypes[]>) => {
       state.categories = action.payload;
     },
+    clearProductsAndCategroy: (
+      state,
+      action: PayloadAction<productstypes[]>
+    ) => {
+      state.categories = null;
+      state.products = null;
+    },
   },
 });
 
-export const { setProducts, setCategories } = productSlice.actions;
+export const { setProducts, setCategories, clearProductsAndCategroy } =
+  productSlice.actions;
 export default productSlice.reducer;

@@ -1,8 +1,8 @@
 import { Alert } from "react-native";
-import { APIClient } from "../../redux/APIClien";
 import { setToken, setUser } from "../../redux/authSlice/authSlice";
 import { FormikState } from "formik";
 import { Dispatch, UnknownAction } from "@reduxjs/toolkit";
+import { APIClient } from "../../calls/APIClien";
 
 interface submitLoginProps {
   values: Record<string, string>;

@@ -7,6 +7,7 @@ export interface productstypes {
   title: string | null;
   brand: string | null;
   thumbnail: string | null;
+  category: string | null;
 }
 
 export interface categoriesTypes {

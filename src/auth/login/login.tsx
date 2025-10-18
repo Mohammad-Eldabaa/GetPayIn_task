@@ -1,28 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { View, Text } from "react-native";
 import { Formik } from "formik";
-import Input from "../../component/input";
 import { LoginInitialValues, loginSchema } from "./loginSchema";
 import SubmitButton from "../../component/submitButton";
 import { submitLogin } from "./submitLogin";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState, store } from "../../redux/store/store";
-import { isTokenExpire } from "../../redux/APIClien";
+import { RootState } from "../../redux/store/store";
 import { styles } from "../../styles/LoginStyles";
 import BiometricUnlockModal from "../bio_integration/BiometricUnlockModal";
 import AuthInputs from "../../component/authInputs";
+import { isTokenExpire } from "../../calls/APIClien";
 
 export const LoginPage = ({ navigation }: any) => {
   const [visible, setVisible] = useState<boolean>(false);
   const dispatch = useDispatch();
   const token = useSelector((store: RootState) => store.auth.token);
 
-  useEffect(() => {
-    if (!isTokenExpire(token)) {
-      navigation.navigate("Home");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!isTokenExpire(token)) {
+  //     navigation.navigate("Home");
+  //   }
+  // }, []);
 
   return (
     <>

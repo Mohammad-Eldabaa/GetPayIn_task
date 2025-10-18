@@ -8,10 +8,12 @@ export function SingleProduct({
   title,
   brand,
   url,
+  id,
 }: {
   title: string;
   brand: string;
   url: string;
+  id?: number;
 }) {
   const user = useSelector((store: RootState) => store.auth.user);
 
@@ -23,7 +25,7 @@ export function SingleProduct({
           <Text style={productsPageStyles.title}>{title}</Text>
           <Text style={productsPageStyles.brand}>{brand}</Text>
         </View>
-        {user?.username === "avat" && <RemoveIcon />}
+        {user?.username === "avat" && <RemoveIcon Id={id} />}
       </View>
     </View>
   );

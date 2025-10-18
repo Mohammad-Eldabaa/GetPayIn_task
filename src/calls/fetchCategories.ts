@@ -1,4 +1,4 @@
-import { APIClient } from "../../redux/APIClien";
+import { APIClient } from "./APIClien";
 
 export const fetchCategories = async (): Promise<any> => {
   const res = await APIClient.get("https://dummyjson.com/products/categories");

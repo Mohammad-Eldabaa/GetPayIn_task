@@ -1,9 +1,8 @@
-import { FlatList, TouchableOpacity, View } from "react-native";
+import { View } from "react-native";
 import { CategoriesStyles } from "../../styles/CategoriesStyles";
 import { useQuery } from "@tanstack/react-query";
-import { fetchCategories } from "./fetchCategories";
+import { fetchCategories } from "../../calls/fetchCategories";
 import IsLoading from "../../component/IsLoading";
-import CategoryItem from "../../component/CategoryItem";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store/store";
@@ -12,16 +11,16 @@ import { startInactivityTimer } from "../../routing/bottomTabs/restartCountingFu
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../routing/stack/navigation";
 import { useNavigation } from "@react-navigation/native";
+import WelcomeComponent from "../../component/welcomeComponent";
+import SectionTitle from "../../component/sectionTitle";
+import CategoriesFlatList from "../../component/categoryFlatList";
 
-type NavProp = StackNavigationProp<RootStackParamList, "Home">;
+export type NavProp = StackNavigationProp<RootStackParamList, "Home">;
 
 export default function Categories() {
   const navigation = useNavigation<NavProp>();
-
   const dispatch = useDispatch();
-  const categories = useSelector(
-    (store: RootState) => store.products.categories
-  );
+  const categories = useSelector((store: RootState) => store.products.categories);
   const { data, isLoading, error } = useQuery({
     queryKey: ["categories"],
     queryFn: fetchCategories,
@@ -39,19 +38,12 @@ export default function Categories() {
   if (isLoading) return <IsLoading />;
   return (
     <View style={CategoriesStyles.Container}>
-      <FlatList
-        id="catFlatList"
-        data={data || categories}
-        keyExtractor={(_, index) => `cat${index}`}
-        numColumns={2}
-        scrollEnabled={true}
-        renderItem={({ item }) => (
-          <CategoryItem
-            name={item.name}
-            navigation={navigation}
-            url={item.url}
-          />
-        )}
+      <WelcomeComponent />
+      <SectionTitle title="Categories" />
+      <CategoriesFlatList
+        data={data}
+        categories={categories}
+        navigation={navigation}
       />
     </View>
   );

@@ -31,7 +31,13 @@ export default function AppNavigation() {
           component={BottomTabs}
           options={{ cardStyle: { backgroundColor: "transparent" } }}
         />
-        <Stack.Screen name="Category" component={SingleCategory} />
+        <Stack.Screen
+          name="Category"
+          component={SingleCategory}
+          options={{
+            headerShown: true,
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

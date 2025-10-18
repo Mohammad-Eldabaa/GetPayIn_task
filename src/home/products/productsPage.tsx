@@ -3,11 +3,13 @@ import { FlatList, Text, View } from "react-native";
 import { productsPageStyles } from "../../styles/productsPageStyles";
 import { useQuery } from "@tanstack/react-query";
 import IsLoading from "../../component/IsLoading";
-import { fetchProducts } from "./fetchProduct";
+import { fetchProducts } from "../../calls/fetchProduct";
 import { useDispatch, useSelector } from "react-redux";
 import { setProducts } from "../../redux/productsSlice/productSlice";
 import { RootState } from "../../redux/store/store";
 import { ProductFlatList } from "../../component/productFlatList";
+import SectionTitle from "../../component/sectionTitle";
+import Toast from "react-native-toast-message";
 
 export default function ProductsPage() {
   const dispatch = useDispatch();
@@ -24,7 +26,9 @@ export default function ProductsPage() {
   if (isLoading) return <IsLoading />;
   return (
     <View style={productsPageStyles.container}>
+      <SectionTitle title="Products" />
       <ProductFlatList data={data} products={products} />
+      <Toast />
     </View>
   );
 }

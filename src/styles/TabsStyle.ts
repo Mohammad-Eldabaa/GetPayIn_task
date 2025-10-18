@@ -1,4 +1,5 @@
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
+const { width: W } = Dimensions.get("window");
 
 export const TabsSytle = StyleSheet.create({
   tabBarStyle: {
@@ -9,7 +10,7 @@ export const TabsSytle = StyleSheet.create({
     shadowOffset: { width: 0, height: -2 },
     shadowOpacity: 0.1,
     shadowRadius: 8,
-    height: 60,
+    height: W * 0.15,
     paddingBottom: 16,
     paddingTop: 8,
     borderRadius: 10,
@@ -17,7 +18,7 @@ export const TabsSytle = StyleSheet.create({
   },
 
   tabBarLabelStyle: {
-    fontSize: 12,
+    fontSize: W * 0.024,
     fontWeight: "600",
   },
 });

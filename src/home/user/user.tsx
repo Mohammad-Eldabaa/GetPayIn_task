@@ -1,24 +1,29 @@
 import React, { useEffect } from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
 import { ProfileStyles } from "../../styles/ProfileStyles";
 import { DetailRow } from "../../component/ProfileDetailRow";
-import { fetchUser } from "./fetchUser";
+import { fetchUser } from "../../calls/fetchUser";
 import { useQuery } from "@tanstack/react-query";
 import IsLoading from "../../component/IsLoading";
+import SignOutButton from "../../component/signoutButton";
+import RetryButton from "../../component/retryComponent";
 
 export default function User() {
   const {
     data: user,
     isLoading,
+    isError,
     error,
+    refetch
   } = useQuery({
     queryKey: ["User"],
     queryFn: fetchUser,
   });
 
+  if (isError) return <RetryButton onPress={()=>{refetch()}} />;
   if (isLoading) return <IsLoading />;
   return (
-    <View style={ProfileStyles.container}>
+    <ScrollView style={ProfileStyles.container}>
       <View style={ProfileStyles.card}>
         <View style={ProfileStyles.profileSection}>
           <Image
@@ -45,7 +50,8 @@ export default function User() {
           <DetailRow icon="email" label="Email" value={user.email} />
           <DetailRow icon="phone" label="Phone" value={user.phone} />
         </View>
+        <SignOutButton />
       </View>
-    </View>
+    </ScrollView>
   );
 }

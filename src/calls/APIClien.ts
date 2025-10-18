@@ -1,8 +1,8 @@
 import axios, { InternalAxiosRequestConfig } from "axios";
 import { jwtDecode } from "jwt-decode";
-import { store } from "./store/store";
-import { clearToken } from "./authSlice/authSlice";
 import { navigationRef } from "../routing/stack/navigation";
+import { store } from "../redux/store/store";
+import { clearToken } from "../redux/authSlice/authSlice";
 
 interface DecodedToken {
   exp?: number;
