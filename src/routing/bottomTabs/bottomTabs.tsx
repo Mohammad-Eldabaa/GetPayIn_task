@@ -3,6 +3,7 @@ import { Ionicons } from "@expo/vector-icons";
 import tabs from "./Tabs";
 import { TabsSytle } from "../../styles/TabsStyle";
 import { useEffect } from "react";
+import { startInactivityTimer } from "./restartCountingFun";
 
 export type BottomTabsParamList = {
   Categories: undefined;

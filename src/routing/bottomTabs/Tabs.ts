@@ -1,6 +1,6 @@
 import Categories from "../../home/categories/categories";
-import Home from "../../home/Home";
 import ProductsPage from "../../home/products/productsPage";
+import User from "../../home/user/user";
 
 const tabs = [
   {
@@ -18,7 +18,7 @@ const tabs = [
   {
     name: "MyAccount",
     title: "person",
-    component: Home,
+    component: User,
     icon: "person-outline",
   },
 ];

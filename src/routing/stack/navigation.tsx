@@ -4,12 +4,14 @@ import {
 } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { LoginPage } from "../../auth/login/login";
-import Home from "../../home/Home";
+import Home from "../../home/user/user";
 import BottomTabs from "../bottomTabs/bottomTabs";
+import SingleCategory from "../../home/singleCategory/singleCategory";
 
 export type RootStackParamList = {
   Login: undefined;
   Home: undefined;
+  Category: { url: string };
 };
 
 export const navigationRef = createNavigationContainerRef<RootStackParamList>();
@@ -29,6 +31,7 @@ export default function AppNavigation() {
           component={BottomTabs}
           options={{ cardStyle: { backgroundColor: "transparent" } }}
         />
+        <Stack.Screen name="Category" component={SingleCategory} />
       </Stack.Navigator>
     </NavigationContainer>
   );

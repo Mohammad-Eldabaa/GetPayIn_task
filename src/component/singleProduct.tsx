@@ -1,7 +1,7 @@
 import { Image, Text, View } from "react-native";
 import { productsPageStyles } from "../styles/productsPageStyles";
 import { useSelector } from "react-redux";
-import { RootState } from "../redux/store";
+import { RootState } from "../redux/store/store";
 import { RemoveIcon } from "./removeIcon";
 
 export function SingleProduct({

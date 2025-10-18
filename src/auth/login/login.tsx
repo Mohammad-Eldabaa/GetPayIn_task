@@ -7,10 +7,11 @@ import SubmitButton from "../../component/submitButton";
 import { submitLogin } from "./submitLogin";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState, store } from "../../redux/store";
+import { RootState, store } from "../../redux/store/store";
 import { isTokenExpire } from "../../redux/APIClien";
 import { styles } from "../../styles/LoginStyles";
 import BiometricUnlockModal from "../bio_integration/BiometricUnlockModal";
+import AuthInputs from "../../component/authInputs";
 
 export const LoginPage = ({ navigation }: any) => {
   const [visible, setVisible] = useState<boolean>(false);
@@ -56,21 +57,15 @@ export const LoginPage = ({ navigation }: any) => {
               }) => (
                 <View>
                   <Text style={styles.title}>Login</Text>
-                  {Object.keys(LoginInitialValues).map((value, index) => (
-                    <Input
-                      key={index}
-                      type={value}
-                      handleBlur={handleBlur}
-                      handleChange={handleChange}
-                      values={values}
-                      errors={errors}
-                      touched={touched}
-                      forgetPassword={value === "password"}
-                      onForgetPress={() =>
-                        navigation.navigate("ForgetPassword")
-                      }
-                    />
-                  ))}
+                  <AuthInputs
+                    LoginInitialValues={LoginInitialValues}
+                    handleBlur={handleBlur}
+                    handleChange={handleChange}
+                    values={values}
+                    errors={errors}
+                    touched={touched}
+                    navigation={navigation}
+                  />
                   <SubmitButton
                     isSubmitting={isSubmitting}
                     handleSubmit={handleSubmit}

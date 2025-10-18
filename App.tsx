@@ -1,5 +1,5 @@
 import { Provider } from "react-redux";
-import { persistor, store } from "./src/redux/store";
+import { persistor, store } from "./src/redux/store/store";
 import { PersistGate } from "redux-persist/integration/react";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import AppNavigation from "./src/routing/stack/navigation";

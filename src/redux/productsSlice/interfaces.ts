@@ -1,5 +1,6 @@
 export interface productsInitialStateTypes {
   products: productstypes[];
+  categories: categoriesTypes[];
 }
 export interface productstypes {
   id: number | null;
@@ -7,6 +8,14 @@ export interface productstypes {
   brand: string | null;
   thumbnail: string | null;
 }
+
+export interface categoriesTypes {
+  slug: string | null;
+  name: string | null;
+  url: string | null;
+}
+
 export const productsInitialState: productsInitialStateTypes = {
   products: [],
+  categories: [],
 };

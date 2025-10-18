@@ -13,8 +13,6 @@ export const handleBiometricAuth = async ({
   setError("");
 
   const hasHardware = await LocalAuthentication.hasHardwareAsync();
-  const supported =
-    await LocalAuthentication.supportedAuthenticationTypesAsync();
   const enrolled = await LocalAuthentication.isEnrolledAsync();
 
   if (!hasHardware || !enrolled) {

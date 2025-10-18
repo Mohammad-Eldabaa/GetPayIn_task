@@ -1,13 +1,8 @@
 import { useEffect, useState } from "react";
-import {
-  View,
-  Text,
-  Modal,
-  TouchableOpacity,
-  ActivityIndicator,
-} from "react-native";
+import { View, Modal } from "react-native";
 import { handleBiometricAuth } from "./handleBiometricAuth";
 import { ModalStyles } from "../../styles/ModalBiometricStyle";
+import BiometricCheck from "../../component/biometricCheck";
 
 export default function BiometricUnlockModal({
   visible,
@@ -29,32 +24,11 @@ export default function BiometricUnlockModal({
     <View>
       <Modal visible={visible} transparent animationType="slide">
         <View style={ModalStyles.overlay}>
-          <View style={ModalStyles.modalContainer}>
-            <Text style={ModalStyles.title}>Biometric Authentication</Text>
-
-            {loading ? (
-              <ActivityIndicator
-                size="large"
-                style={ModalStyles.loadingIndicator}
-              />
-            ) : (
-              <>
-                <Text style={ModalStyles.description}>
-                  Use your fingerprint or face to unlock
-                </Text>
-                {error ? (
-                  <Text style={ModalStyles.errorText}>{error}</Text>
-                ) : null}
-
-                <TouchableOpacity
-                  style={ModalStyles.tryAgainButton}
-                  onPress={() => setVisible(false)}
-                >
-                  <Text style={ModalStyles.tryAgainText}>Close</Text>
-                </TouchableOpacity>
-              </>
-            )}
-          </View>
+          <BiometricCheck
+            error={error}
+            loading={loading}
+            setVisible={setVisible}
+          />
         </View>
       </Modal>
     </View>

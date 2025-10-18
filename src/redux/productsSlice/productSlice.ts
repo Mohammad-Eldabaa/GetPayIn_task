@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
+  categoriesTypes,
   productsInitialState,
-  productsInitialStateTypes,
   productstypes,
 } from "./interfaces";
 
@@ -12,8 +12,11 @@ const productSlice = createSlice({
     setProducts: (state, action: PayloadAction<productstypes[]>) => {
       state.products = action.payload;
     },
+    setCategories: (state, action: PayloadAction<categoriesTypes[]>) => {
+      state.categories = action.payload;
+    },
   },
 });
 
-export const { setProducts } = productSlice.actions;
+export const { setProducts, setCategories } = productSlice.actions;
 export default productSlice.reducer;

@@ -24,7 +24,7 @@ export async function submitLogin({
     const response = await APIClient.post("/auth/login", {
       username: values.username,
       password: values.password,
-      expiresInMins: 1,
+      expiresInMins: 10,
     });
 
     console.log("Login response:", response.data);
@@ -38,7 +38,6 @@ export async function submitLogin({
     navigation.navigate("Home");
     resetForm();
   } catch (error) {
-    // console.error("Login error:", error.response?.data || error.message);
     const errorMessage =
       error.response?.data?.message || error.message || "Something went wrong!";
     showAlert("Login Error", errorMessage);

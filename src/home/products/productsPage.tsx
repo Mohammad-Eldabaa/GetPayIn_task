@@ -6,7 +6,7 @@ import IsLoading from "../../component/IsLoading";
 import { fetchProducts } from "./fetchProduct";
 import { useDispatch, useSelector } from "react-redux";
 import { setProducts } from "../../redux/productsSlice/productSlice";
-import { RootState } from "../../redux/store";
+import { RootState } from "../../redux/store/store";
 import { ProductFlatList } from "../../component/productFlatList";
 
 export default function ProductsPage() {

@@ -1,6 +1,6 @@
 import axios, { InternalAxiosRequestConfig } from "axios";
 import { jwtDecode } from "jwt-decode";
-import { store } from "./store";
+import { store } from "./store/store";
 import { clearToken } from "./authSlice/authSlice";
 import { navigationRef } from "../routing/stack/navigation";
 
