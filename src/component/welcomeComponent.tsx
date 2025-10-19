@@ -29,7 +29,7 @@ export default function WelcomeComponent() {
   return (
     <View style={WelcomeComponentStyle.container}>
       <Text style={WelcomeComponentStyle.WelcomMessage}>
-        Hello {selector.firstName} 👋
+        Hello {selector?.firstName || ""} 👋
       </Text>
       <View style={[WelcomeComponentStyle.onlineViweContainer]}>
         <View
