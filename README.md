@@ -1,4 +1,4 @@
-# GetPayIn Store App
+# E-Commerce Store App
 
 A React Native mobile application featuring authentication, product management, and security features including auto-lock and biometric authentication.
 
